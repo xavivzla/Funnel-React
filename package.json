@@ -1,10 +1,10 @@
 {
   "name": "funnel-react",
   "version": "1.0.0",
-  "description": "pequeño proyecto",
+  "description": "A small bookcase to create a funnel with a modern style",
   "author": "xavivzla",
   "license": "MIT",
-  "repository": "//",
+  "repository": "https://github.com/xavivzla/Funnel-React",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
