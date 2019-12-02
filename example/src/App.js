@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './App.css';
 
-import ExampleComponent from 'funnel-react'
+import ExampleComponent from 'funnel-react';
 
-export default class App extends Component {
-  render () {
-    return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
-    )
+class App extends Component {
+  render() {
+    return <ExampleComponent text='Modern React component module' />;
   }
 }
+
+export default App;
