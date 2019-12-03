@@ -16,7 +16,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "start": "rollup -c -w && nodemon -x yalc push",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
@@ -69,7 +69,8 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-url": "^3.0.1"
+    "rollup-plugin-url": "^3.0.1",
+    "yalc": "^1.0.0-pre.34"
   },
   "files": [
     "dist"
