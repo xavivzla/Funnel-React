@@ -1,51 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import FunnelGraph from '../../lib/init'
 
-// import './funnel.css'
+import style from '../../lib/funnel.css'
+
+const normalizeData = (data, key) => data.map(item => item[key])
 
 const renderPipeline = (config) => {
   var graph = new FunnelGraph({
-    container: '.funnel',
+    // container: '.funnel',
     ...config
   })
 
   graph.draw()
 }
 
-const Funnel = ({
-  colors,
-  labels,
-  percents,
-  values,
-  displayPercent,
-  gradientDirection,
-  height,
-  width,
-  responsive
-}) => {
-  useEffect(() => {
-    renderPipeline({
-      data: {
-        colors,
-        labels,
-        percents,
-        values
-      },
-      displayPercent,
-      gradientDirection,
-      height,
-      responsive,
-      width
-    })
-  }, [])
+const Funnel = props => {
+  const funnelRef = useRef(null)
 
-  return (
-    <div className='flex'>
-      <div className='funnel'>
-      </div>
-    </div>
-  )
+  useEffect(() => {
+
+    renderPipeline({
+      container: funnelRef.current,
+      data: {
+        // colors,
+        labels: props.hasOwnProperty('labelKey') ? normalizeData(props.data, props.labelKey) : [],
+        // percents,
+        values: props.hasOwnProperty('valueKey') ? normalizeData(props.data, props.valueKey) : []
+      },
+      // displayPercent,
+      // gradientDirection,
+      height: props.height,
+      // responsive,
+      width: props.width
+    })
+    
+  }, [props])
+
+  return <div ref={funnelRef} />
 }
 
 export default Funnel

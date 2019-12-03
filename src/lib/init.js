@@ -7,9 +7,18 @@ import {
   setAttrs
 } from './graph'
 
+import jss from 'jss'
+import preset from 'jss-preset-default'
+
+import styles from './styles'
+
+
+jss.setup(preset())
 class FunnelGraph {
   constructor(options) {
+    console.log("Xavi ~~~ :)  : FunnelGraph -> constructor -> options", options)
     this.containerSelector = options.container
+    this.styles = jss.createStyleSheet(styles).attach()
     this.data = options.data
     this.gradientDirection = (options.gradientDirection && options.gradientDirection === 'vertical') ?
       'vertical' :
@@ -29,14 +38,15 @@ class FunnelGraph {
 
   // crea el contenedor para el svg
   createContainer() {
+    const { classes } = this.styles
     if(!this.containerSelector) 
       throw new Error('Container is missing')
 
-    this.container = document.querySelector(this.containerSelector)
-    this.container.classList.add('svg-funnel')
+    this.container = this.containerSelector
+    this.container.classList.add(classes.svgFunnelContainer)
 
     this.graphContainer = document.createElement('div')
-    this.graphContainer.classList.add('svg-funnel__container')
+    this.graphContainer.classList.add(classes.svgFunnelGraphContainer)
     this.container.appendChild(this.graphContainer)
   }
 
@@ -184,18 +194,20 @@ class FunnelGraph {
   }
 
   addLabels() {
+    const { classes } = this.styles
     const holder = document.createElement('div')
-    holder.setAttribute('class', 'svg-funnel__labels')
+    holder.setAttribute('class', classes.svgFunnelLabels)
     this.percentages.forEach((percentage, index) => {
       const labelElement = document.createElement('div')
-      labelElement.setAttribute('class', `svg-funnel__label label-${index + 1}`)
+      // labelElement.setAttribute('class', `svg-funnel__label label-${index + 1}`)
+      labelElement.setAttribute('class', classes.svgFunnelLabel)
 
       const title = document.createElement('div')
-      title.setAttribute('class', 'label__title')
+      title.setAttribute('class', classes.svgFunnelLabelTitle)
       title.textContent = this.labels[index] || ''
 
       const value = document.createElement('div')
-      value.setAttribute('class', 'label__value')
+      value.setAttribute('class', classes.svgFunnelLabelValue)
 
       const valueNumber = this.values[index]
       value.textContent = formatNumber(valueNumber)
