@@ -1,22 +1,11 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import Funnel from './components/Funnel'
+import Bar from './components/Bar'
 
-import styles from './styles.css'
+// export Foo and Bar as named exports
+export { Funnel, Bar }
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+// alternative, more concise syntax for named exports
+// export { default as Foo } from './Foo'
 
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+// you can optionally also set a default export for your module
+// export default { Funnel, Bar }
