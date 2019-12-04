@@ -10,7 +10,9 @@
 
 </div>
 
-
+<p align="center">
+  <a href="https://github.com/xavivzla" rel="noopener" target="_blank"><img width="600" src="https://raw.githubusercontent.com/xavivzla/Funnel-React/dev/funnel.gif" alt="Funnel-react logo"></a></p>
+</p>
 
 ## Install
 
@@ -27,24 +29,43 @@ yarn add funnel-react
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
 
 import { Funnel } from 'funnel-react';
 
-class App extends Component {
-  render() {
-    return (
-        <Funnel
-        labelKey='label' // 'label' ''
-        height={252}
-        colors={[ '#1890FF', '#BAE7FF' ]} // array or string
-        valueKey='quantity'
-        width={800}
-        displayPercent={true}
-        data={data} />
-    )
-  }
-}
+```
+
+##Simple example
+
+```jsx
+
+<Funnel
+  height={252}
+  colors={[ '#1890FF', '#BAE7FF' ]}
+  valueKey='quantity'
+  width={800}
+  data={data} />
+
+```
+
+##Render prop example
+
+```jsx
+const data = [
+  {
+      "label": "Aceptados",
+      "quantity": 135
+  },
+  ...{}
+]
+
+  <Funnel
+  labelKey='label'
+  height={252}
+  colors={[ '#1890FF', '#BAE7FF' ]} // array or string : 'red' || '#666'
+  valueKey='quantity' 
+  width={800}
+  displayPercent={true}
+  data={data} />
 
 ```
 
