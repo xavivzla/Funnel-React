@@ -28,7 +28,7 @@ const Funnel = props => {
         // percents,
         values: props.hasOwnProperty('valueKey') ? normalizeData(props.data, props.valueKey) : []
       },
-      // displayPercent,
+      displayPercent: props.displayPercent,
       // gradientDirection,
       height: props.height,
       // responsive,

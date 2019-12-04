@@ -198,6 +198,7 @@ class FunnelGraph {
     const holder = document.createElement('div')
     holder.setAttribute('class', classes.svgFunnelLabels)
     this.percentages.forEach((percentage, index) => {
+    console.log("XAVI  :): FunnelGraph -> addLabels -> percentage", percentage)
       const labelElement = document.createElement('div')
       // labelElement.setAttribute('class', `svg-funnel__label label-${index + 1}`)
       labelElement.setAttribute('class', classes.svgFunnelLabel)
@@ -213,7 +214,7 @@ class FunnelGraph {
       value.textContent = formatNumber(valueNumber)
 
       const percentageValue = document.createElement('div')
-      percentageValue.setAttribute('class', 'label__percentage')
+      percentageValue.setAttribute('class', classes.svgFunnelLabelPercentage)
       percentageValue.setAttribute('style', `margin-top: ${this.getCrossAxisPoints()[0][index] + 20}px`)
 
       percentageValue.textContent = this.customPercents ?
@@ -231,12 +232,15 @@ class FunnelGraph {
   }
 
   makeSVG() {
+    const { classes } = this.styles
     const svg = createSVGElement('svg', this.graphContainer, {
       height             : this.getHeight(),
       preserveAspectRatio: 'none',
       viewBox            : `0 0 ${this.getWidth()} ${this.getHeight()}`,
       width              : this.responsive ? '100%' : this.getWidth()
     })
+
+    svg.classList.add(classes.svgFunnelCanvas)
 
     const valuesNum = this.getCrossAxisPoints().length - 1
     for (let i = 0; i < valuesNum; i++) {
@@ -266,6 +270,7 @@ class FunnelGraph {
   }
 
   drawPaths() {
+    const { classes } = this.styles
     const svg = this.getSVG()
     // obtengo el nodo del patch dentro del svg
     const paths = svg.querySelectorAll('path')
@@ -273,8 +278,9 @@ class FunnelGraph {
     
     // seteo el path
     definitions.map((path, index) => {
+      
       paths[index].setAttribute('d', path)
-      paths[index].classList.add('svg-funel-animation')
+      paths[index].classList.add(classes.svgFunnelAnimation)
     })
   }
   

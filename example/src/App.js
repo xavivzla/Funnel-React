@@ -47,6 +47,7 @@ class App extends Component {
       height={252}
       valueKey='quantity'
       width={800}
+      displayPercent={true}
       data={data} />
     )
   }
