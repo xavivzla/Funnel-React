@@ -10,6 +10,8 @@
 
 </div>
 
+
+
 ## Install
 
 ```bash
@@ -25,18 +27,35 @@ yarn add funnel-react
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MyComponent from 'funnel-react'
+import { Funnel } from 'funnel-react';
 
-class Example extends Component {
-  render () {
+class App extends Component {
+  render() {
     return (
-      <MyComponent />
+        <Funnel
+        labelKey='label' // 'label' ''
+        height={252}
+        colors={[ '#1890FF', '#BAE7FF' ]} // array or string
+        valueKey='quantity'
+        width={800}
+        displayPercent={true}
+        data={data} />
     )
   }
 }
+
 ```
+
+| props          | Type            | Default Value          | Options      |
+| -------------  |:--------------: | :--------------------: | :----------: |
+| labelKey       | string          |                        |              |
+| colors         | array or string | ['#FF4589', '#FF5050'] |              |
+| valueKey       | string          |                        |              |
+| width          | number          | container width        |              |
+| displayPercent | boolean         | false                  | false / true |
+| data           | array           |                        |              |
 
 ## License
 

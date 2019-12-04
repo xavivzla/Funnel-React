@@ -16,7 +16,6 @@ import styles from './styles'
 jss.setup(preset())
 class FunnelGraph {
   constructor(options) {
-    console.log("Xavi ~~~ :)  : FunnelGraph -> constructor -> options", options)
     this.containerSelector = options.container
     this.styles = jss.createStyleSheet(styles).attach()
     this.data = options.data
@@ -34,6 +33,20 @@ class FunnelGraph {
     this.displayPercent = options.displayPercent || false
     this.percentages = this.createPercentages()
     this.responsive = options.responsive || false
+    this.colorPercent = options.colorPercent || ''
+    this.colorLabel =   options.colorLabel || ''
+  }
+
+  // validate get data and correct format
+  validateData() {
+    if(!this.values.length){
+      console.error('Warning: The funnel component is waiting for a data property as an array.')
+      console.log('%c%s',
+      'color: white; background: black; font-size: 14px; padding: 15px;',
+      'example: [11,22,33,44]. more info => https://google.com')
+    }else {
+      return true
+    }
   }
 
   // crea el contenedor para el svg
@@ -195,12 +208,12 @@ class FunnelGraph {
 
   addLabels() {
     const { classes } = this.styles
+    console.log("Xavi ~~~ :)  : FunnelGraph -> addLabels -> this.styles", this.styles)
+    console.log("Xavi ~~~ :)  : FunnelGraph -> addLabels -> classes", classes.svgFunnelLabelTitle)
     const holder = document.createElement('div')
     holder.setAttribute('class', classes.svgFunnelLabels)
     this.percentages.forEach((percentage, index) => {
-    console.log("XAVI  :): FunnelGraph -> addLabels -> percentage", percentage)
       const labelElement = document.createElement('div')
-      // labelElement.setAttribute('class', `svg-funnel__label label-${index + 1}`)
       labelElement.setAttribute('class', classes.svgFunnelLabel)
 
       const title = document.createElement('div')
@@ -285,12 +298,14 @@ class FunnelGraph {
   }
   
   draw() {
-    this.createContainer()
-    this.makeSVG()
-
-    this.addLabels()
-
-    this.drawPaths()
+    if(this.validateData()){
+        this.createContainer()
+        this.makeSVG()
+    
+        this.addLabels()
+    
+        this.drawPaths()
+    }
   }
 }
 

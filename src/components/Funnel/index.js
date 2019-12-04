@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 
 import FunnelGraph from '../../lib/init'
-
-import style from '../../lib/funnel.css'
 
 const normalizeData = (data, key) => data.map(item => item[key])
 
 const renderPipeline = (config) => {
-  var graph = new FunnelGraph({
-    // container: '.funnel',
-    ...config
-  })
-
+  var graph = new FunnelGraph(config)
   graph.draw()
 }
 
@@ -19,20 +14,33 @@ const Funnel = props => {
   const funnelRef = useRef(null)
 
   useEffect(() => {
+    const {
+      data,
+      labelKey,
+      valueKey,
+      height,
+      width,
+      colors,
+      gradientDirection,
+      colorPercent,
+      colorLabel
+    } = props
 
     renderPipeline({
       container: funnelRef.current,
       data: {
-        // colors,
-        labels: props.hasOwnProperty('labelKey') ? normalizeData(props.data, props.labelKey) : [],
+        colors,
+        labels: props.hasOwnProperty('labelKey') ? normalizeData(data, labelKey) : [],
         // percents,
-        values: props.hasOwnProperty('valueKey') ? normalizeData(props.data, props.valueKey) : []
+        values: props.hasOwnProperty('valueKey') ? normalizeData(data, valueKey) : []
       },
       displayPercent: props.displayPercent,
-      // gradientDirection,
-      height: props.height,
+      gradientDirection,
+      height,
+      colorPercent,
+      colorLabel,
       // responsive,
-      width: props.width
+      width
     })
     
   }, [props])
@@ -40,5 +48,15 @@ const Funnel = props => {
   return <div ref={funnelRef} />
 }
 
-export default Funnel
 
+Funnel.propTypes = {
+  data:  PropTypes.array.isRequired,
+  valueKey: PropTypes.string.isRequired,
+  labelKey: PropTypes.string,
+  height: PropTypes.number.isRequired,
+  colorPercent: PropTypes.string,
+  colorLabel: PropTypes.string
+};
+
+export default Funnel
+ 

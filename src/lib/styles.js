@@ -48,7 +48,6 @@ export default {
     marginBottom: 6
   },
   svgFunnelContainer: {
-    // width: '100%',
     display: 'inline-block',
     position: 'relative'
   },
