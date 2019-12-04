@@ -1,10 +1,13 @@
 {
   "name": "funnel-react",
-  "version": "1.0.0",
-  "description": "",
-  "author": "xavivzla",
+  "version": "0.0.1",
+  "description": "A very small library to create a modern and beautiful funnel",
+  "author": "Xavier Gonzalez <xavivzla.g@gmail.com>",
   "license": "MIT",
-  "repository": "xavivzla/funnel-react",
+  "repository": "xavivzla/Funnel-React",
+  "bugs": {
+    "url": "https://github.com/xavivzla/Funnel-React/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -12,6 +15,15 @@
     "node": ">=12",
     "npm": ">=5"
   },
+  "keywords": [
+    "node",
+    "npm",
+    "react-component",
+    "react",
+    "react.js",
+    "funnel",
+    "yarn"
+  ],
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
