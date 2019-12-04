@@ -27,11 +27,11 @@ export default {
     postcss({
       modules: true
     }),
-    url(),
+    url({ exclude: ['**/*.svg'] }),
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: [ '@babel/external-helpers' ]
     }),
     resolve(),
     commonjs()
