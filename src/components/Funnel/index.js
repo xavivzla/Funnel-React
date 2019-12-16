@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import FunnelGraph from '../../lib/init'
@@ -43,7 +43,7 @@ const Funnel = props => {
       width
     })
     
-  }, [props])
+  }, [])
 
   return <div ref={funnelRef} />
 }
@@ -59,5 +59,5 @@ Funnel.propTypes = {
   responsive: PropTypes.bool
 };
 
-export default Funnel
+export default React.memo(Funnel)
  

@@ -16,6 +16,10 @@ import styles from './styles'
 jss.setup(preset())
 class FunnelGraph {
   constructor(options) {
+    // if(FunnelGraph.instance) {
+    //   return FunnelGraph.instance
+    // }
+
     this.styles = jss.createStyleSheet(styles).attach()
     this.data = options.data
     this.gradientDirection = (options.gradientDirection && options.gradientDirection === 'vertical') ?
@@ -34,6 +38,7 @@ class FunnelGraph {
     this.responsive = options.responsive || false
     this.colorPercent = options.colorPercent || ''
     this.colorLabel =   options.colorLabel || ''
+    // FunnelGraph.instance = this
   }
 
   // validate get data and correct format
@@ -48,22 +53,15 @@ class FunnelGraph {
     }
   }
 
-  validateContainer() {
-    const { classes } = this.styles
-
-    if( !this.container.classList.contains(classes.svgFunnelContainer)) return true
-
-    return false
-  }
-
   // crea el contenedor para el svg
   createContainer() {
     const { classes } = this.styles
     if(!this.container) 
       throw new Error('Container is missing')
-
-    this.container.classList.add(classes.svgFunnelContainer)
-
+      
+      this.container.innerHTML = ''
+      this.container.classList.add(classes.svgFunnelContainer)
+      
     this.graphContainer = document.createElement('div')
     this.graphContainer.classList.add(classes.svgFunnelGraphContainer)
     this.container.appendChild(this.graphContainer)
@@ -302,7 +300,7 @@ class FunnelGraph {
   }
   
   draw() {
-    if(this.validateData() && this.validateContainer()){
+    if(this.validateData()){
         this.createContainer()
         this.makeSVG()
     
