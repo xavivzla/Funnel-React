@@ -26,7 +26,7 @@ export default {
     paddingLeft: 24,
   },
   svgFunnelGraphContainer: {
-
+    // width: '100%'
   },
   svgFunnelCanvas: {
     marginTop: 100
@@ -49,7 +49,8 @@ export default {
   },
   svgFunnelContainer: {
     display: 'inline-block',
-    position: 'relative'
+    position: 'relative',
+    width: '100%'
   },
   svgFunnelAnimation: {
     fillOpacity: 0,

@@ -16,13 +16,12 @@ import styles from './styles'
 jss.setup(preset())
 class FunnelGraph {
   constructor(options) {
-    this.containerSelector = options.container
     this.styles = jss.createStyleSheet(styles).attach()
     this.data = options.data
     this.gradientDirection = (options.gradientDirection && options.gradientDirection === 'vertical') ?
       'vertical' :
       'horizontal'
-    this.container = null // ref del container que llega por props
+    this.container = options.container || null // ref del container que llega por props
     this.graphContainer = null // node de contenedor para el svg
     this.height = options.height
     this.width = options.width
@@ -49,13 +48,20 @@ class FunnelGraph {
     }
   }
 
+  validateContainer() {
+    const { classes } = this.styles
+
+    if( !this.container.classList.contains(classes.svgFunnelContainer)) return true
+
+    return false
+  }
+
   // crea el contenedor para el svg
   createContainer() {
     const { classes } = this.styles
-    if(!this.containerSelector) 
+    if(!this.container) 
       throw new Error('Container is missing')
 
-    this.container = this.containerSelector
     this.container.classList.add(classes.svgFunnelContainer)
 
     this.graphContainer = document.createElement('div')
@@ -208,8 +214,6 @@ class FunnelGraph {
 
   addLabels() {
     const { classes } = this.styles
-    console.log("Xavi ~~~ :)  : FunnelGraph -> addLabels -> this.styles", this.styles)
-    console.log("Xavi ~~~ :)  : FunnelGraph -> addLabels -> classes", classes.svgFunnelLabelTitle)
     const holder = document.createElement('div')
     holder.setAttribute('class', classes.svgFunnelLabels)
     this.percentages.forEach((percentage, index) => {
@@ -298,7 +302,7 @@ class FunnelGraph {
   }
   
   draw() {
-    if(this.validateData()){
+    if(this.validateData() && this.validateContainer()){
         this.createContainer()
         this.makeSVG()
     
