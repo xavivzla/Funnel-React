@@ -51,16 +51,19 @@ class App extends Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Funnel
-        labelKey='label'
-        height={252}
-        colors={[ '#1890FF', '#BAE7FF' ]}
-        colorPercent='#fff'
-        colorLabel='#fff'
-        valueKey='quantity'
-        width={800}
-        displayPercent={true}
-        data={data} />
+          <div style={{width: 800}}>
+            <Funnel
+            labelKey='label'
+            height={252}
+            colors={[ '#1890FF', '#BAE7FF' ]}
+            colorPercent='#fff'
+            colorLabel='#fff'
+            valueKey='quantity'
+            width={800}
+            responsive={true}
+            displayPercent={true}
+            data={data} />
+          </div>
       </div>
     )
   }
