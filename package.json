@@ -1,6 +1,6 @@
 {
   "name": "funnel-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A very small library to create a modern and beautiful funnel",
   "author": "Xavier Gonzalez <xavivzla.g@gmail.com>",
   "license": "MIT",
