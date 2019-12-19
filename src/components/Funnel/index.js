@@ -22,8 +22,6 @@ const Funnel = props => {
       width,
       colors,
       gradientDirection,
-      colorPercent,
-      colorLabel,
       responsive
     } = props
 
@@ -37,8 +35,6 @@ const Funnel = props => {
       displayPercent: props.displayPercent,
       gradientDirection,
       height,
-      colorPercent,
-      colorLabel,
       responsive,
       width
     })
@@ -54,8 +50,7 @@ Funnel.propTypes = {
   valueKey: PropTypes.string.isRequired,
   labelKey: PropTypes.string,
   height: PropTypes.number.isRequired,
-  colorPercent: PropTypes.string,
-  colorLabel: PropTypes.string,
+  colors: PropTypes.object,
   responsive: PropTypes.bool
 };
 

@@ -40,7 +40,12 @@ import { Funnel } from 'funnel-react';
 
 <Funnel
   height={252}
-  colors={[ '#1890FF', '#BAE7FF' ]}
+  colors={{
+    graph: [ '#1890FF', '#BAE7FF' ],
+    percent: 'red',
+    label: 'yellow',
+    value: 'orange'
+  }}
   valueKey='quantity'
   width={800}
   data={data} />
@@ -61,7 +66,12 @@ const data = [
   <Funnel
   labelKey='label'
   height={252}
-  colors={[ '#1890FF', '#BAE7FF' ]} // array or string : 'red' || '#666'
+  colors={{
+    graph: [ '#1890FF', '#BAE7FF' ], // array or string : 'red' || '#666'
+    percent: 'red',
+    label: 'yellow',
+    value: 'orange'
+  }}
   valueKey='quantity' 
   width={800}
   displayPercent={true}
@@ -72,7 +82,7 @@ const data = [
 | props          | Type            | Default Value          | Options      |
 | -------------  |:--------------: | :--------------------: | :----------: |
 | labelKey       | string          |                        |              |
-| colors         | array or string | ['#FF4589', '#FF5050'] |              |
+| colors         | object          |                        |              |
 | valueKey       | string          |                        |              |
 | width          | number          | container width        |              |
 | displayPercent | boolean         | false                  | false / true |

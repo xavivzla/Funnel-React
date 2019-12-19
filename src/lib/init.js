@@ -31,13 +31,15 @@ class FunnelGraph {
     this.width = options.width
     this.labels = FunnelGraph.getLabels(options)
     this.customPercents = FunnelGraph.getCustomPercents(options)
-    this.colors = options.data.colors || getDefaultColors()
     this.values = FunnelGraph.getValues(options)
     this.displayPercent = options.displayPercent || false
     this.percentages = this.createPercentages()
     this.responsive = options.responsive || false
-    this.colorPercent = options.colorPercent || ''
-    this.colorLabel =   options.colorLabel || ''
+    // colors
+    this.colorPercent = this.getColorPercent()
+    this.colorLabel = this.getColorLabel()
+    this.colorValue = this.getColorValue()
+    this.colorGraph = this.getColorGraph()
     // FunnelGraph.instance = this
   }
 
@@ -68,6 +70,7 @@ class FunnelGraph {
   }
 
   // static
+
   static getCustomPercents(options) {
     if(!options.data) 
       throw new Error('Data is missing')
@@ -104,6 +107,30 @@ class FunnelGraph {
   // end static
 
   // Gets 
+  getColorLabel() {
+    const color = this.data.colors.label || 'gray'
+
+    return color
+  }
+
+  getColorValue() {
+    const color = this.data.colors.value || 'gray'
+    
+    return color
+  }
+
+  getColorPercent() {
+    const color = this.data.colors.percent || 'gray'
+    
+    return color
+  }
+
+  getColorGraph() {
+    const color = this.data.colors.graph || getDefaultColors()
+
+    return color
+  }
+
   getDataSize() {
     return this.values.length
   }
@@ -220,17 +247,19 @@ class FunnelGraph {
 
       const title = document.createElement('div')
       title.setAttribute('class', classes.svgFunnelLabelTitle)
+      title.setAttribute('style', `color: ${this.colorLabel}`)
       title.textContent = this.labels[index] || ''
 
       const value = document.createElement('div')
       value.setAttribute('class', classes.svgFunnelLabelValue)
+      value.setAttribute('style', `color: ${this.colorValue}`)
 
       const valueNumber = this.values[index]
       value.textContent = formatNumber(valueNumber)
 
       const percentageValue = document.createElement('div')
       percentageValue.setAttribute('class', classes.svgFunnelLabelPercentage)
-      percentageValue.setAttribute('style', `margin-top: ${this.getCrossAxisPoints()[0][index] + 20}px`)
+      percentageValue.setAttribute('style', `color: ${this.colorPercent}; margin-top: ${this.getCrossAxisPoints()[0][index] + 20}px`)
 
       percentageValue.textContent = this.customPercents ?
         `${this.customPercents[index].toString()}%` : `${percentage.toString()}%`
@@ -261,7 +290,7 @@ class FunnelGraph {
     for (let i = 0; i < valuesNum; i++) {
       const path = createSVGElement('path', svg)
 
-      const color = this.colors
+      const color = this.colorGraph
       const fillMode = (typeof color === 'string' || color.length === 1) ? 'solid' : 'gradient'
 
       if(fillMode === 'solid') 

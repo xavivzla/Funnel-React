@@ -55,9 +55,12 @@ class App extends Component {
             <Funnel
             labelKey='label'
             height={252}
-            colors={[ '#1890FF', '#BAE7FF' ]}
-            colorPercent='#fff'
-            colorLabel='#fff'
+            colors={{
+              graph: [ '#1890FF', '#BAE7FF' ],
+              percent: 'red',
+              label: 'yellow',
+              value: 'orange'
+            }}
             valueKey='quantity'
             width={800}
             responsive={true}
