@@ -261,8 +261,10 @@ class FunnelGraph {
       percentageValue.setAttribute('class', classes.svgFunnelLabelPercentage)
       percentageValue.setAttribute('style', `color: ${this.colorPercent}; margin-top: ${this.getCrossAxisPoints()[0][index] + 20}px`)
 
-      percentageValue.textContent = this.customPercents ?
-        `${this.customPercents[index].toString()}%` : `${percentage.toString()}%`
+      if(percentage) {
+        percentageValue.textContent = this.customPercents ?
+          `${this.customPercents[index].toString()}%` : `${percentage.toString()}%`
+      }
 
       labelElement.appendChild(value)
       labelElement.appendChild(title)
