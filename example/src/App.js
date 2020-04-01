@@ -7,36 +7,36 @@ const data = [
       "_id": "5de52b4ac4275a463f912042",
       "item": "accepted",
       "label": "Aceptados",
-      "percent": 0,
-      "quantity": 0
+      "percent": 50,
+      "quantity": 50
   },
   {
       "_id": "5de52b4ac4275a463f912041",
       "item": "visitors",
       "label": "Visitantes",
-      "percent": 0,
-      "quantity": 0
+      "percent": 40,
+      "quantity": 40
   },
   {
       "_id": "5de52b4ac4275a463f912040",
       "item": "postulants",
       "label": "Postulantes",
-      "percent": 0,
-      "quantity": 0
+      "percent": 30,
+      "quantity": 30
   },
   {
       "_id": "5de52b4ac4275a463f91203f",
       "item": "inprocess",
       "label": "En proceso",
-      "percent": 0,
-      "quantity": 0
+      "percent": 20,
+      "quantity": 20
   },
   {
       "_id": "5de52b4ac4275a463f91203e",
       "item": "finalists",
       "label": "Finalistas",
-      "percent": 0,
-      "quantity": 0
+      "percent": 10,
+      "quantity": 10
   }
 ]
 class App extends Component {
@@ -64,6 +64,8 @@ class App extends Component {
             valueKey='quantity'
             width={800}
             responsive={true}
+            displayQuantity={false}
+            displayLabel={false}
             displayPercent={true}
             data={data} />
           </div>

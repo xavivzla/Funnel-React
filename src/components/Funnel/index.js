@@ -22,7 +22,10 @@ const Funnel = props => {
       width,
       colors,
       gradientDirection,
-      responsive
+      responsive,
+      displayPercent = false,
+      displayQuantity = true,
+      displayLabel = true
     } = props
 
     renderPipeline({
@@ -32,10 +35,12 @@ const Funnel = props => {
         labels: props.hasOwnProperty('labelKey') ? normalizeData(data, labelKey) : [],
         values: props.hasOwnProperty('valueKey') ? normalizeData(data, valueKey) : []
       },
-      displayPercent: props.displayPercent,
+      displayPercent,
       gradientDirection,
       height,
       responsive,
+      displayQuantity,
+      displayLabel,
       width
     })
     
